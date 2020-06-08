@@ -36,6 +36,7 @@ public:
 		return size;
 	}
 	void pushBack(int elem);
+	void popBack();
 	bool empty()const
 	{
 		return size == 0;

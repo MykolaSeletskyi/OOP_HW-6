@@ -28,9 +28,17 @@ void Vector::pushBack(int elem)
 	{
 		reserve(size + START_CAPACITY);
 	}
-	size++;
 	arr[size] = elem;
-	
+	size++;
+}
+
+void Vector::popBack()
+{
+	if (size>0)
+	{
+		arr[size] = 0;
+		size--;
+	}
 }
 
 int& Vector::operator[](size_t number)
