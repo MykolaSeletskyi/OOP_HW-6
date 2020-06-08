@@ -2,6 +2,10 @@
 int Vector::bad = 0;
 void Vector::reserve(size_t capacity)
 {
+	if (this->capacity >= capacity)
+	{
+		return;
+	}
 	int* temp = new int[capacity];
 	for (size_t i = 0; i < this->capacity; i++)
 	{
@@ -14,12 +18,20 @@ void Vector::reserve(size_t capacity)
 
 void Vector::reserve(const Vector& obj)
 {
-	int* arr = new int[obj.capacity];
-	for (size_t i = 0; i < obj.capacity; i++)
+	if (arr!=nullptr)
+	{
+	delete[]arr;
+	}
+	reserve(obj.size);
+	size = obj.size;
+	for (size_t i = 0; i < size; i++)
 	{
 		arr[i] = obj.arr[i];
 	}
-	this->capacity = obj.capacity;
+	for (size_t i = size; i < capacity; i++)
+	{
+		arr[i] = 0;
+	}
 }
 
 void Vector::pushBack(int elem)
@@ -30,6 +42,53 @@ void Vector::pushBack(int elem)
 	}
 	arr[size] = elem;
 	size++;
+}
+
+void Vector::pushIndex(int elem, size_t index)
+{
+	if (index <= size)
+	{
+		if (size == capacity)
+		{
+			reserve(size + START_CAPACITY);
+		}
+		int* temp = new int[++size];
+		for (size_t i = 0; i < size; i++)
+		{
+			if (i < index)
+			{
+				temp[i] = arr[i];
+			}
+			else if (i > index)
+			{
+				temp[i] = arr[i-1];
+			}
+		}
+		temp[index] = elem;
+		delete[]arr;
+		arr = temp;
+	}
+}
+
+void Vector::popIndex(size_t index)
+{
+	if (index <= size)
+	{
+		int* temp = new int[--size];
+		for (size_t i = 0; i < size; i++)
+		{
+			if (i < index)
+			{
+				temp[i] = arr[i];
+			}
+			else if (i >= index)
+			{
+				temp[i] = arr[i+1];
+			}
+		}
+		delete[]arr;
+		arr = temp;
+	}
 }
 
 void Vector::popBack()

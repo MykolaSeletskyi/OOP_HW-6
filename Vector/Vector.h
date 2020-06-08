@@ -18,7 +18,7 @@ public:
 	Vector(const Vector& obj)
 	{
 		size = obj.size;
-		reserve(capacity);
+		reserve(obj);
 	}
 	Vector(Vector&& obj)
 	{
@@ -30,13 +30,15 @@ public:
 	}
 	size_t getSize()const
 	{
-		return capacity;
+		return size;
 	}
 	size_t getCapacity()const
 	{
-		return size;
+		return capacity;
 	}
 	void pushBack(int elem);
+	void pushIndex(int elem, size_t index);
+	void popIndex(size_t index);
 	void popBack();
 	int& front()
 	{
@@ -45,6 +47,14 @@ public:
 			return bad;
 		}
 		return arr[0];
+	}
+	int& back()
+	{
+		if (size == 0)
+		{
+			return bad;
+		}
+		return arr[size];
 	}
 	bool empty()const
 	{
@@ -57,8 +67,17 @@ public:
 			arr[index] = value;
 		}
 	}
-	int &operator [](size_t number);
 	void fill(int value);
+	void clear()
+	{
+		for (size_t i = 0; i < size; i++)
+		{
+			arr[i] = 0;
+		}
+		size=0;
+	}
+
+	int &operator [](size_t number);
 	~Vector()
 	{
 		delete[]arr;
