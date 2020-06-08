@@ -44,7 +44,7 @@ void Vector::pushBack(int elem)
 	size++;
 }
 
-void Vector::pushIndex(int elem, size_t index)
+void Vector::insert(int elem, size_t index)
 {
 	if (index <= size)
 	{
@@ -115,4 +115,40 @@ void Vector::fill(int value)
 	{
 		arr[i] = value;
 	}
+}
+
+Vector& Vector::operator=(const Vector& obj)
+{
+	if (this != &obj)
+	{
+		reserve(obj);
+	}
+	return *this;
+}
+
+
+Vector Vector::operator*(const Vector& obj) const
+{
+	return Vector();
+}
+
+Vector Vector::operator/(const Vector& obj) const
+{
+	return Vector();
+}
+
+Vector& Vector::operator++()
+{
+	for (size_t i = 0; i < size; i++)
+	{
+		arr[i]++;
+	}
+	return *this;
+}
+
+Vector Vector::operator++(int)
+{
+	Vector temp(*this);
+	this->operator++();
+	return temp;
 }
