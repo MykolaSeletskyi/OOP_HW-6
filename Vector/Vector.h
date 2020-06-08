@@ -7,6 +7,7 @@ class Vector
 	size_t size;
 	void reserve(size_t capacity = START_CAPACITY);//мона поставити size + START_CAPACITY
 	void reserve(const Vector& obj);
+	static int bad;
 public:
 	Vector(size_t size=0) : Vector(size, 0) {                                                                   };
 	Vector(size_t size, int value) {
@@ -37,6 +38,14 @@ public:
 	}
 	void pushBack(int elem);
 	void popBack();
+	int& front()
+	{
+		if (size==0)
+		{
+			return bad;
+		}
+		return arr[0];
+	}
 	bool empty()const
 	{
 		return size == 0;

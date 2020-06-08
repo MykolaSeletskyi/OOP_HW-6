@@ -1,9 +1,9 @@
 #include "Vector.h"
-
+int Vector::bad = 0;
 void Vector::reserve(size_t capacity)
 {
 	int* temp = new int[capacity];
-	for (size_t i = 0; i < capacity; i++)
+	for (size_t i = 0; i < this->capacity; i++)
 	{
 		temp[i] = arr[i];
 	}
@@ -43,8 +43,7 @@ void Vector::popBack()
 
 int& Vector::operator[](size_t number)
 {
-	static int bad;
-	if (number<size)
+	if (number<=size)
 	{
 		return arr[number];
 	}
