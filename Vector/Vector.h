@@ -73,7 +73,7 @@ public:
 	Vector& operator=(const Vector& obj);
 	Vector& operator=(Vector&& obj);
 
-	Vector operator*(const Vector& obj)const;
+	Vector operator*(int number)const;
 	Vector operator/(const Vector& obj)const;
 
 	Vector& operator ++();

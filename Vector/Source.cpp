@@ -8,6 +8,11 @@ int main()
 	//void resize(size_t newSize, int value = 0), 
 	//ємність масиву якщо потрібно - збільшується
 
+
+	//я ще не доробив 
+	 
+
+	 
 	Vector a;
 	a.pushBack(1);
 	a.pushBack(2);
@@ -18,7 +23,7 @@ int main()
 	a.pushBack(6);
 	a.insert(33,3);
 	a.popIndex(2);
-	Vector b=a;
+	Vector b=a*2;
 	//b.clear();
 	for (size_t i = 0; i < b.getSize(); i++)
 	{

@@ -127,9 +127,14 @@ Vector& Vector::operator=(const Vector& obj)
 }
 
 
-Vector Vector::operator*(const Vector& obj) const
+Vector Vector::operator*(int number) const
 {
-	return Vector();
+	Vector result(*this);
+	for (size_t i = 0; i < size; i++)
+	{
+		result.arr[i]*=number;
+	}
+	return result;
 }
 
 Vector Vector::operator/(const Vector& obj) const
