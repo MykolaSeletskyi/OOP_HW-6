@@ -35,6 +35,7 @@ public:
 	{
 		return size;
 	}
+	void pushBack(int elem);
 	bool empty()const
 	{
 		return size == 0;

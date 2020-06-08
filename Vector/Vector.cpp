@@ -22,6 +22,17 @@ void Vector::reserve(const Vector& obj)
 	this->capacity = obj.capacity;
 }
 
+void Vector::pushBack(int elem)
+{
+	if (size == capacity)
+	{
+		reserve(size + START_CAPACITY);
+	}
+	size++;
+	arr[size] = elem;
+	
+}
+
 int& Vector::operator[](size_t number)
 {
 	static int bad;
