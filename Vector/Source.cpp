@@ -16,15 +16,15 @@ int main()
 	a.pushBack(1);
 	a.pushBack(2);
 	a.pushBack(3);//delete
-	//33
+	////33
 	Vector b;
 	b.pushBack(4);
 	b.pushBack(5);
 	b.pushBack(6); 
 	a += b;
-	Vector c = (!b);//тут ок
-	//c = (!c);// тут вилітає
-	//b.clear();
+	Vector c = (!b);
+	c = (!b);
+	c=c * 2;
 	for (size_t i = 0; i < c.getSize(); i++)
 	{
 		cout << c[i]<<endl;

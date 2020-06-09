@@ -3,8 +3,8 @@ class Vector
 {
 	static const size_t START_CAPACITY = 5;
 	int* arr = nullptr;
-	size_t capacity;
-	size_t size;
+	size_t capacity=0;
+	size_t size=0;
 	static int bad;
 	void reserve(size_t capacity = START_CAPACITY);//мона поставити size + START_CAPACITY
 	void copy(const Vector& obj);
@@ -90,4 +90,5 @@ Vector& operator +=( Vector& left, const Vector& right);
 Vector operator +(const Vector& left, const Vector& right);
 Vector operator ++(Vector& obj,int);
 Vector& operator ++(Vector& obj);
+Vector& operator*=(Vector& obj, const int number);
 Vector operator*(const Vector& obj, const int number);

@@ -19,11 +19,7 @@ void Vector::reserve(size_t capacity)
 
 void Vector::copy(const Vector& obj)
 {
-	if (arr!=nullptr)
-	{
-	delete[]arr;
-	}
-	reserve(obj.size);
+	reserve(obj.capacity);
 	size = obj.size;
 	for (size_t i = 0; i < size; i++)
 	{
@@ -33,6 +29,7 @@ void Vector::copy(const Vector& obj)
 	{
 		arr[i] = 0;
 	}
+
 }
 
 void Vector::pushBack(int elem)
@@ -201,6 +198,11 @@ Vector& operator++(Vector& obj)
 		obj[i];
 	}
 	return obj;
+}
+
+Vector& operator*=(Vector& obj, const int number)
+{
+	return (obj = obj * number);
 }
 
 Vector operator*(const Vector& obj, int number)
