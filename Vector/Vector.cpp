@@ -1,4 +1,5 @@
 #include "Vector.h"
+#include <iostream>
 int Vector::bad = 0;
 void Vector::reserve(size_t capacity)
 {
@@ -14,9 +15,9 @@ void Vector::reserve(size_t capacity)
 	this->capacity = capacity;
 	delete[]arr;
 	arr = temp;
-}
+ }
 
-void Vector::reserve(const Vector& obj)
+void Vector::copy(const Vector& obj)
 {
 	if (arr!=nullptr)
 	{
@@ -100,7 +101,7 @@ void Vector::popBack()
 	}
 }
 
-int& Vector::operator[](size_t number)
+int& Vector::operator[](size_t number)const
 {
 	if (number<=size)
 	{
@@ -121,20 +122,9 @@ Vector& Vector::operator=(const Vector& obj)
 {
 	if (this != &obj)
 	{
-		reserve(obj);
+		copy(obj);
 	}
 	return *this;
-}
-
-
-Vector Vector::operator*(int number) const
-{
-	Vector result(*this);
-	for (size_t i = 0; i < size; i++)
-	{
-		result.arr[i]*=number;
-	}
-	return result;
 }
 
 Vector Vector::operator/(const Vector& obj) const
@@ -142,18 +132,83 @@ Vector Vector::operator/(const Vector& obj) const
 	return Vector();
 }
 
-Vector& Vector::operator++()
+Vector operator!(const Vector& obj)
 {
-	for (size_t i = 0; i < size; i++)
+	Vector result (obj);
+
+	int temp = result[0];
+	for (int i = 0; i < obj.getSize() / 2; ++i)
 	{
-		arr[i]++;
+		result[i] = temp;
+		temp = result[obj.getSize() - i - 1];
+		result[obj.getSize() - i - 1] = result[i];
+		result[i] = temp;
 	}
-	return *this;
+	return result;
 }
 
-Vector Vector::operator++(int)
+bool operator==(const Vector& left, const Vector& right)
 {
-	Vector temp(*this);
-	this->operator++();
+	if (left.getSize()!=right.getSize())
+	{
+	return false;
+	}
+	for (size_t i = 0; i < left.getSize(); i++)
+	{
+		if (left[i]!=right[i])
+		{
+			return false;
+		}			
+	}
+	return true;
+}
+
+bool operator!=(const Vector& left, const Vector& right)
+{
+	return !(left== right);
+}
+
+Vector& operator+=( Vector& left, const Vector& right)
+{
+	for (size_t i = 0; i < right.getSize(); i++)
+	{
+		left.pushBack(right[i]);
+	}
+	return left;
+}
+
+Vector operator+(const Vector& left, const Vector& right)
+{
+	Vector result(left);
+	for (size_t i = 0; i < right.getSize(); i++)
+	{
+		result.pushBack(right[i]);
+	}
+	return result;
+}
+
+Vector operator++(Vector& obj, int)
+{
+	Vector temp(obj);
+	++obj;
 	return temp;
+}
+
+Vector& operator++(Vector& obj)
+{
+	for (size_t i = 0; i < obj.getSize(); i++)
+	{
+		obj[i];
+	}
+	return obj;
+}
+
+Vector operator*(const Vector& obj, int number)
+{
+	Vector result(obj);
+	for (size_t i = 0; i < result.getSize(); i++)
+	{
+		result[i] *= number;
+	}
+	return result;
 }

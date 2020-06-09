@@ -5,9 +5,9 @@ class Vector
 	int* arr = nullptr;
 	size_t capacity;
 	size_t size;
-	void reserve(size_t capacity = START_CAPACITY);//мона поставити size + START_CAPACITY
-	void reserve(const Vector& obj);
 	static int bad;
+	void reserve(size_t capacity = START_CAPACITY);//мона поставити size + START_CAPACITY
+	void copy(const Vector& obj);
 public:
 	Vector(size_t size=0) : Vector(size, 0) {                                                                   };
 	Vector(size_t size, int value) {
@@ -17,7 +17,7 @@ public:
 	}
 	Vector(const Vector& obj)
 	{
-		reserve(obj);
+		copy(obj);
 	}
 	size_t getSize()const
 	{
@@ -27,7 +27,6 @@ public:
 	{
 		return capacity;
 	}
-	void resize(size_t newSize, int value = 0);
 	void pushBack(int elem);
 	void insert(int elem, size_t index);
 	void popIndex(size_t index);
@@ -69,15 +68,13 @@ public:
 		size=0;
 	}
 
-	int &operator [](size_t number);
+	int &operator [](size_t number)const;
 	Vector& operator=(const Vector& obj);
-	Vector& operator=(Vector&& obj);
 
-	Vector operator*(int number)const;
+
 	Vector operator/(const Vector& obj)const;
 
-	Vector& operator ++();
-	Vector operator ++(int);
+	
 	~Vector()
 	{
 		delete[]arr;
@@ -86,4 +83,11 @@ public:
 		size = 0;
 	};
 };
-
+Vector operator!(const Vector& obj);
+bool operator ==(const Vector& left, const Vector& right);
+bool operator !=(const Vector& left, const Vector& right);
+Vector& operator +=( Vector& left, const Vector& right);
+Vector operator +(const Vector& left, const Vector& right);
+Vector operator ++(Vector& obj,int);
+Vector& operator ++(Vector& obj);
+Vector operator*(const Vector& obj, const int number);

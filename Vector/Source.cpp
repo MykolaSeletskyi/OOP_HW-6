@@ -9,7 +9,6 @@ int main()
 	//ємність масиву якщо потрібно - збільшується
 
 
-	//я ще не доробив 
 	 
 
 	 
@@ -18,16 +17,17 @@ int main()
 	a.pushBack(2);
 	a.pushBack(3);//delete
 	//33
-	a.pushBack(4);
-	a.pushBack(5);
-	a.pushBack(6);
-	a.insert(33,3);
-	a.popIndex(2);
-	Vector b=a*2;
+	Vector b;
+	b.pushBack(4);
+	b.pushBack(5);
+	b.pushBack(6); 
+	a += b;
+	Vector c = (!b);//тут ок
+	//c = (!c);// тут вилітає
 	//b.clear();
-	for (size_t i = 0; i < b.getSize(); i++)
+	for (size_t i = 0; i < c.getSize(); i++)
 	{
-		cout << b[i]<<endl;
+		cout << c[i]<<endl;
 
 	}
 	return 0;
