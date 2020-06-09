@@ -27,6 +27,7 @@ public:
 	{
 		return capacity;
 	}
+	void print()const;
 	void pushBack(int elem);
 	void insert(int elem, size_t index);
 	void popIndex(size_t index);
@@ -70,11 +71,9 @@ public:
 
 	int &operator [](size_t number)const;
 	Vector& operator=(const Vector& obj);
+	Vector operator() (size_t start, size_t len);
+	operator int()const;	
 
-
-	Vector operator/(const Vector& obj)const;
-
-	
 	~Vector()
 	{
 		delete[]arr;

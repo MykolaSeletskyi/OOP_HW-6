@@ -32,6 +32,14 @@ void Vector::copy(const Vector& obj)
 
 }
 
+void Vector::print() const
+{
+	for (size_t i = 0; i < size; i++)
+	{
+		std::cout << arr[i] << "\t";
+	}
+}
+
 void Vector::pushBack(int elem)
 {
 	if (size == capacity)
@@ -124,9 +132,32 @@ Vector& Vector::operator=(const Vector& obj)
 	return *this;
 }
 
-Vector Vector::operator/(const Vector& obj) const
+Vector Vector::operator()(size_t start, size_t len)
 {
-	return Vector();
+	if (start >=  size)
+	{
+		return bad;
+	}
+	if (len>size)
+	{
+		len = size- start;
+	}
+	Vector result(len);
+	for (size_t i = 0; i <= len; i++)
+	{
+		result[i] = arr[i + start];
+	}
+	return result;
+}
+
+Vector::operator int() const
+{
+	int result = 0;
+	for (size_t i = 0; i < size; i++)
+	{
+		result += arr[i];
+	}
+	return result;
 }
 
 Vector operator!(const Vector& obj)
