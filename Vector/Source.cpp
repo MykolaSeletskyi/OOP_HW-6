@@ -37,10 +37,10 @@ int main()
 	v2[1] = 20; // v2 : -1 20 -1 -1
 
 	Vector v3 = v1 + v2;  // v3:  1 2 3 -1 20 -1 -1 
-	cout << "v3 is " << v3 << endl; // 
+	cout << "v3 is \t" << v3 << endl; // 
 
 	v3 = v1 * 5;  // v3:  5 10 15
-	cout << "v3 is " << v3 << endl; // 
+	cout << "v3 is \t" << v3 << endl; // 
 
 	v2 *= 10;  // v2 : -10 200 -10 -10
 
