@@ -5,29 +5,29 @@ class Vector
 {
 	static const size_t START_CAPACITY = 5;
 	int* arr = nullptr;
-	size_t capacity=0;
-	size_t size=0;
+	size_t m_capacity=0;
+	size_t m_size=0;
 	static int bad;
-	void reserve(size_t capacity = START_CAPACITY);//мона поставити size + START_CAPACITY
 	void copy(const Vector& obj);
 public:
-	Vector(size_t size=0) : Vector(size, 0) {                                                                   };
-	Vector(size_t size, int value) {
-		reserve(size + START_CAPACITY);
-		this->size = size;
+	Vector(size_t m_size=0) : Vector(m_size, 0) {};
+	Vector(size_t m_size, int value) {
+		reserve(m_size + START_CAPACITY);
+		this->m_size = m_size;
 		fill(value);
 	}
 	Vector(const Vector& obj)
 	{
 		copy(obj);
 	}
-	size_t getSize()const
+	void reserve(size_t newcapacity = START_CAPACITY);
+	size_t size()const
 	{
-		return size;
+		return m_size;
 	}
-	size_t getCapacity()const
+	size_t capacity()const
 	{
-		return capacity;
+		return m_capacity;
 	}
 	void print()const;
 	void pushBack(int elem);
@@ -36,7 +36,7 @@ public:
 	void popBack();
 	int& front()
 	{
-		if (size==0)
+		if (m_size==0)
 		{
 			return bad;
 		}
@@ -44,32 +44,25 @@ public:
 	}
 	int& back()
 	{
-		if (size == 0)
+		if (m_size == 0)
 		{
 			return bad;
 		}
-		return arr[size];
+		return arr[m_size];
 	}
 	bool empty()const
 	{
-		return size == 0;
+		return m_size == 0;
 	}
 	void setValue(size_t index, int value) 
 	{
-		if (index<size)
+		if (index<m_size)
 		{
 			arr[index] = value;
 		}
 	}
 	void fill(int value);
-	void clear()
-	{
-		for (size_t i = 0; i < size; i++)
-		{
-			arr[i] = 0;
-		}
-		size=0;
-	}
+	void clear();
 
 	int &operator [](size_t number)const;
 	Vector& operator=(const Vector& obj);
@@ -80,8 +73,8 @@ public:
 	{
 		delete[]arr;
 		arr = nullptr;
-		capacity = 0;
-		size = 0;
+		m_capacity = 0;
+		m_size = 0;
 	};
 };
 Vector operator!(const Vector& obj);
