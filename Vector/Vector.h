@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+#include <ostream>
 class Vector
 {
 	static const size_t START_CAPACITY = 5;
@@ -91,3 +93,4 @@ Vector operator ++(Vector& obj,int);
 Vector& operator ++(Vector& obj);
 Vector& operator*=(Vector& obj, const int number);
 Vector operator*(const Vector& obj, const int number);
+std::ostream& operator<<(std::ostream& out, const Vector& obj);

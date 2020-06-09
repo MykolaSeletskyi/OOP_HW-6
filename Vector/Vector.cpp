@@ -1,5 +1,5 @@
 #include "Vector.h"
-#include <iostream>
+
 int Vector::bad = 0;
 void Vector::reserve(size_t capacity)
 {
@@ -244,4 +244,13 @@ Vector operator*(const Vector& obj, int number)
 		result[i] *= number;
 	}
 	return result;
+}
+
+std::ostream& operator<<(std::ostream& out, const Vector& obj)
+{
+	for (size_t i = 0; i < obj.getSize(); i++)
+	{
+		out << obj[i] << "\t";
+	}
+	return out;
 }

@@ -24,6 +24,6 @@ int main()
 
 	c=c * 2;
 	c.print();
-
+	cout << endl << c;
 	return 0;
 }
