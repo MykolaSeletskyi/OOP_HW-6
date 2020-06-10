@@ -3,11 +3,6 @@
 using namespace std;
 int main()
 {
-	//не зробив не зрозумів для чого
-
-	//Метод зміни фактичної довжини масиву 
-	//void resize(size_t newSize, int value = 0), 
-	//ємність масиву якщо потрібно - збільшується
 
 
 	Vector v1(2); // фактичний розмір = 2, елементи нулі, buffer -> [0][0], 
@@ -16,11 +11,15 @@ int main()
 	v1.pushBack(20);
 	cout << "The size of v is " << v1.size() << endl; // 4
 	cout << "The capacity of v is " << v1.capacity() << endl; // >=4, якась Ваша формула, н-д, якщо ємності не вистачає можна збільшувати ємність масиву з певним коефіціентом(1.5 чи 2)
+	
+	cin >> v1;
+
 	v1.print(); // 0 0 10 20
 	if (!v1.empty())// якщо не пусто
 		v1.popBack(); // вилучили останній
 	v1.print(); // 0 0 10
 	cout << "The size of v is " << v1.size() << endl; // 3
+
 	v1.reserve(20); // capacity = 20, size = яке було(3)
 	v1.front() = 1234; // перший елемент замінили на 1234
 	v1.clear();
@@ -45,6 +44,9 @@ int main()
 	v2 *= 10;  // v2 : -10 200 -10 -10
 
 	v2 += Vector(3, 5);  // // v2 : -10 200 -10 -10 5 5 5
+
+
+
 
 	return 0;
 }

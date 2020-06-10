@@ -265,3 +265,13 @@ std::ostream& operator<<(std::ostream& out, const Vector& obj)
 	out << "\n";
 	return out;
 }
+
+std::istream& operator>>(std::istream& is, Vector& obj)
+{
+	for (size_t i = 0; i < obj.size(); i++)
+	{
+		std::cout << "Enter element " << i << " : ";
+		is >> obj[i];
+	}
+	return is;
+}
