@@ -11,8 +11,7 @@ class Vector
 	static int bad;
 	void copy(const Vector& obj);
 public:
-	Vector(size_t m_size=0) : Vector(m_size, 0) {};
-	Vector(size_t m_size, int value) {
+	Vector(size_t m_size=0, int value=0) {
 		reserve(m_size + START_CAPACITY);
 		this->m_size = m_size;
 		fill(value);
@@ -35,33 +34,14 @@ public:
 	void insert(int elem, size_t index);
 	void popIndex(size_t index);
 	void popBack();
-	int& front()
-	{
-		if (m_size==0)
-		{
-			return bad;
-		}
-		return arr[0];
-	}
-	int& back()
-	{
-		if (m_size == 0)
-		{
-			return bad;
-		}
-		return arr[m_size];
-	}
+	int& front()const;
+	int& back()const;
 	bool empty()const
 	{
 		return m_size == 0;
 	}
-	void setValue(size_t index, int value) 
-	{
-		if (index<m_size)
-		{
-			arr[index] = value;
-		}
-	}
+	void setValue(size_t index, int value);
+	void resize(size_t newSize, int value = 0);
 	void fill(int value);
 	void clear();
 

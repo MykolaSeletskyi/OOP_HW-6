@@ -12,7 +12,7 @@ int main()
 	cout << "The size of v is " << v1.size() << endl; // 4
 	cout << "The capacity of v is " << v1.capacity() << endl; // >=4, якась Ваша формула, н-д, якщо ємності не вистачає можна збільшувати ємність масиву з певним коефіціентом(1.5 чи 2)
 	
-	cin >> v1;
+	/*cin >> v1;*/
 
 	v1.print(); // 0 0 10 20
 	if (!v1.empty())// якщо не пусто
@@ -36,7 +36,8 @@ int main()
 	v2[1] = 20; // v2 : -1 20 -1 -1
 
 	Vector v3 = v1 + v2;  // v3:  1 2 3 -1 20 -1 -1 
-	cout << "v3 is \t" << v3 << endl; // 
+	v3.insert(333, 2);
+	cout << "v3 is " << v3 << endl; // 
 
 	v3 = v1 * 5;  // v3:  5 10 15
 	cout << "v3 is \t" << v3 << endl; // 

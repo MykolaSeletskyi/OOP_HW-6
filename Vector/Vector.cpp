@@ -8,14 +8,14 @@ void Vector::reserve(size_t newcapacity)
 		return;
 	}
 	int* temp = new int[newcapacity];
-	for (size_t i = 0; i < this->m_capacity; i++)
+	for (size_t i = 0; i < this->m_size; i++)
 	{
 		temp[i] = arr[i];
 	}
 	this->m_capacity = newcapacity;
 	delete[]arr;
 	arr = temp;
- }
+}
 
 void Vector::copy(const Vector& obj)
 {
@@ -43,37 +43,20 @@ void Vector::print() const
 
 void Vector::pushBack(int elem)
 {
-	if (m_size == m_capacity)
-	{
-		reserve(m_size + START_CAPACITY);
-	}
-	arr[m_size] = elem;
-	m_size++;
+	resize(m_size + 1, elem);
+
 }
 
 void Vector::insert(int elem, size_t index)
 {
 	if (index <= m_size)
 	{
-		if (m_size == m_capacity)
+		resize(m_size + 1,elem);
+		
+		for (size_t i = m_size-1; i > index; i--)
 		{
-			reserve(m_size + START_CAPACITY);
+			std::swap(arr[i], arr[i - 1]);
 		}
-		int* temp = new int[++m_size];
-		for (size_t i = 0; i < m_size; i++)
-		{
-			if (i < index)
-			{
-				temp[i] = arr[i];
-			}
-			else if (i > index)
-			{
-				temp[i] = arr[i-1];
-			}
-		}
-		temp[index] = elem;
-		delete[]arr;
-		arr = temp;
 	}
 }
 
@@ -90,7 +73,7 @@ void Vector::popIndex(size_t index)
 			}
 			else if (i >= index)
 			{
-				temp[i] = arr[i+1];
+				temp[i] = arr[i + 1];
 			}
 		}
 		delete[]arr;
@@ -100,20 +83,59 @@ void Vector::popIndex(size_t index)
 
 void Vector::popBack()
 {
-	if (m_size>0)
+	if (m_size > 0)
 	{
 		arr[m_size] = 0;
 		m_size--;
 	}
 }
 
+int& Vector::front()const
+{
+	if (m_size == 0)
+	{
+		return bad;
+	}
+	return arr[0];
+}
+
+int& Vector::back()const
+{
+	if (m_size == 0)
+	{
+		return bad;
+	}
+	return arr[m_size];
+}
+
 int& Vector::operator[](size_t number)const
 {
-	if (number<= m_size)
+	if (number <= m_size)
 	{
 		return arr[number];
 	}
 	return bad;
+}
+
+void Vector::setValue(size_t index, int value)
+{
+	if (index < m_size)
+	{
+		arr[index] = value;
+	}
+}
+
+void Vector::resize(size_t newSize, int value)
+{
+	if (newSize >= m_capacity)
+	{
+		reserve(newSize + START_CAPACITY);
+	}
+	for (size_t i = m_size; i < newSize; i++)
+	{
+		arr[i] = value;
+	}
+	m_size = newSize;
 }
 
 void Vector::fill(int value)
@@ -148,9 +170,9 @@ Vector Vector::operator()(size_t start, size_t len)
 	{
 		return bad;
 	}
-	if (len> m_size)
+	if (len > m_size)
 	{
-		len = m_size- start;
+		len = m_size - start;
 	}
 	Vector result(len);
 	for (size_t i = 0; i <= len; i++)
@@ -172,7 +194,7 @@ Vector::operator int() const
 
 Vector operator!(const Vector& obj)
 {
-	Vector result (obj);
+	Vector result(obj);
 
 	int temp = result[0];
 	for (int i = 0; i < obj.size() / 2; ++i)
@@ -187,26 +209,26 @@ Vector operator!(const Vector& obj)
 
 bool operator==(const Vector& left, const Vector& right)
 {
-	if (left.size()!=right.size())
+	if (left.size() != right.size())
 	{
-	return false;
+		return false;
 	}
 	for (size_t i = 0; i < left.size(); i++)
 	{
-		if (left[i]!=right[i])
+		if (left[i] != right[i])
 		{
 			return false;
-		}			
+		}
 	}
 	return true;
 }
 
 bool operator!=(const Vector& left, const Vector& right)
 {
-	return !(left== right);
+	return !(left == right);
 }
 
-Vector& operator+=( Vector& left, const Vector& right)
+Vector& operator+=(Vector& left, const Vector& right)
 {
 	for (size_t i = 0; i < right.size(); i++)
 	{
